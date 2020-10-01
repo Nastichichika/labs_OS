@@ -22,7 +22,7 @@ public class Server {
 
             System.out.println("Server started :)");
 
-            ByteBuffer byteBuffer = ByteBuffer.allocate(1024*1024);
+            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
             byteBuffer.put(Integer.toString(number).getBytes());
             byteBuffer.flip();
 

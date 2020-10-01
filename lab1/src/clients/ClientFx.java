@@ -7,8 +7,27 @@ import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 
 public class ClientFx extends Thread{
+    SocketChannel socketChannel;
     public ClientFx() throws IOException {
         InetSocketAddress address = new InetSocketAddress("host", 2809);
-        SocketChannel socketChannel = SocketChannel.open(address);
+        this.socketChannel = SocketChannel.open(address);
+    }
+
+    @Override
+    public void run() {
+        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+        int bytesRead;
+        try {
+            bytesRead = socketChannel.read(byteBuffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        byteBuffer.flip();
+
+        if(byteBuffer.remaining() == 0){
+            byteBuffer.clear();
+            return;
+        }
+        
     }
 }
