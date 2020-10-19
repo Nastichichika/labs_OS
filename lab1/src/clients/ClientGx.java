@@ -6,13 +6,13 @@ import java.nio.channels.ServerSocketChannel;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 
-public class ClientGx extends Thread{
+public class ClientGx {
     SocketChannel socketChannel;
     public ClientGx() throws IOException {
-        InetSocketAddress address = new InetSocketAddress("host", 2809);
+        InetSocketAddress address = new InetSocketAddress("localhost", 2809);
         this.socketChannel = SocketChannel.open(address);
     }
-    @Override
+
     public void run() {
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         int bytesRead;

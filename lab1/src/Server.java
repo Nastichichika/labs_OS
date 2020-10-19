@@ -1,12 +1,18 @@
+import clients.ClientFx;
+import clients.ClientGx;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
+import java.util.List;
 
 public class Server {
-    InetSocketAddress address = new InetSocketAddress("host", 2809);
+    InetSocketAddress address = new InetSocketAddress("localhost", 2809);
     int number;
+    boolean working = true;
+    List<Process> clientProcesses;
 
     public Server( int number){
         this.number = number;
@@ -17,7 +23,13 @@ public class Server {
         serverSocketChannel.socket().bind(address);
         serverSocketChannel.configureBlocking(false);
 
-        while(true){
+        ClientFx fx = new ClientFx();
+        ClientGx gx = new ClientGx();
+        fx.run();
+        gx.run();
+        //run clients
+
+        while(working){
             SocketChannel socketChannel = serverSocketChannel.accept();
 
             System.out.println("Server started :)");
@@ -30,10 +42,8 @@ public class Server {
             //writing to client
 
             //reading
+
             socketChannel.close();
         }
-
     }
-
-
 }
