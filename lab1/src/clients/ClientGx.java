@@ -28,4 +28,16 @@ public class ClientGx {
             return;
         }
     }
+    int Gx(int number) throws InterruptedException {
+        switch (number) {
+            case 1:
+                Thread.sleep(2000);
+                return 42;
+            case 2:
+                return 28;
+            case 3:
+            case 4:
+                return 0;
+        }
+    }
 }

@@ -1,12 +1,13 @@
 package clients;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.channels.ServerSocketChannel;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 
 public class ClientFx{
+
     SocketChannel socketChannel;
+
     public ClientFx() throws IOException {
         InetSocketAddress address = new InetSocketAddress("localhost", 2809);
         this.socketChannel = SocketChannel.open(address);
@@ -27,5 +28,18 @@ public class ClientFx{
             return;
         }
 
+    }
+    int Fx(int number) throws InterruptedException {
+        switch (number) {
+            case 1:
+                return 28;
+            case 2:
+                Thread.sleep(2000);
+                return 42;
+            case 3:
+                return 0;
+            case 4;
+        }
+        return number;
     }
 }
