@@ -1,6 +1,3 @@
-import clients.ClientFx;
-import clients.ClientGx;
-
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
@@ -9,7 +6,7 @@ import java.nio.channels.SocketChannel;
 import java.util.List;
 
 public class Server {
-    ServerSocketChannel serverSocketChannel;
+    private ServerSocketChannel serverSocketChannel;
     int number;
     boolean working = true;
     List<Process> clientProcesses;
@@ -26,8 +23,6 @@ public class Server {
         while(working){
             SocketChannel socketChannel = serverSocketChannel.accept();
 
-            write(socketChannel);
-
             //reading
 
             socketChannel.close();
@@ -38,16 +33,21 @@ public class Server {
         serverSocketChannel.socket().bind(new InetSocketAddress("localhost", 2809));
         serverSocketChannel.configureBlocking(false);
     }
-    void write(SocketChannel socketChannel) throws IOException {
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-        byteBuffer.put(Integer.toString(number).getBytes());
-        byteBuffer.flip();
-        socketChannel.write(byteBuffer);
+
+    private void startProcess(String s) throws InterruptedException, IOException {
+        ProcessBuilder builder = new ProcessBuilder("java", "-jar", "C:", String.valueOf(this.number));
+        Process process = builder.start();
+        clientProcesses.add(process);
     }
+
     void runClients() throws IOException {
-        ClientFx fx = new ClientFx();
-        ClientGx gx = new ClientGx();
-        fx.run();
-        gx.run();
+
+    }
+
+    String read(SocketChannel socketChannel) throws IOException {
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        socketChannel.read(buffer);
+        String result = new String(buffer.array()).trim();
+        return result;
     }
 }

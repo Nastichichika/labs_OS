@@ -40,21 +40,34 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/lab1.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/clients/gx" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.Unnamed">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="lab1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -83,7 +96,10 @@
       <workItem from="1602442149975" duration="20000" />
       <workItem from="1602583985387" duration="919000" />
       <workItem from="1602611149960" duration="379000" />
-      <workItem from="1603100012107" duration="4323000" />
+      <workItem from="1603100012107" duration="4892000" />
+      <workItem from="1603123020968" duration="2421000" />
+      <workItem from="1603126549823" duration="5389000" />
+      <workItem from="1603187448188" duration="5294000" />
     </task>
     <servers />
   </component>
@@ -111,14 +127,14 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="137" y="0" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1601592395385" />
-    <state x="412" y="158" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1601583177630">
+    <state x="412" y="158" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1603201659766">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="412" y="158" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1601583177630" />
-    <state x="462" y="110" key="FileChooserDialogImpl" timestamp="1602442173522">
+    <state x="412" y="158" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1603201659766" />
+    <state x="462" y="110" key="FileChooserDialogImpl" timestamp="1603201278020">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="462" y="110" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1602442173522" />
+    <state x="462" y="110" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1603201278020" />
     <state width="1323" height="182" key="GridCell.Tab.0.bottom" timestamp="1601592106570">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -139,10 +155,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="263" y="111" key="IDE.errors.dialog/0.0.1366.738@0.0.1366.738" timestamp="1601592369155" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1602002291751">
+    <state x="163" y="0" key="SettingsEditor" timestamp="1603201939606">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1602002291751" />
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1603201939606" />
     <state x="92" y="92" width="1182" height="554" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601592756323">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
