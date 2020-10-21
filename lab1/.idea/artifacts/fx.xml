@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="lab1:jar2">
-    <output-path>$PROJECT_DIR$/out/artifacts/lab1_jar2</output-path>
+  <artifact type="jar" name="fx">
+    <output-path>$PROJECT_DIR$/out/artifacts/fx</output-path>
     <root id="archive" name="lab1.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/src/clients/fx/META-INF/MANIFEST.MF" />

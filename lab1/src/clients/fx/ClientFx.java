@@ -1,4 +1,6 @@
 package clients.fx;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.net.InetSocketAddress;
@@ -38,18 +40,34 @@ public class ClientFx{
         int temp1 = IntOps.funcF(this.number);
         this.number = temp;
         write();
-
     }
 
     void write() throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-        String str = String.valueOf(number) + " fx";
+        String str = "F" + String.valueOf(number);
         buffer.put(str.getBytes());
         buffer.flip();
         socketChannel.write(buffer);
         buffer.clear();
     }
 
+    public class KeyEvent implements KeyListener {
+
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(java.awt.event.KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyReleased(java.awt.event.KeyEvent e) {
+
+        }
+    }
     public static void main(String[] args) throws InterruptedException, IOException {
         int number =  Integer.parseInt(args[0]);
         ClientFx clientFx = new ClientFx(number);

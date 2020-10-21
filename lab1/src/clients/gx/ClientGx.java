@@ -2,6 +2,7 @@ package clients.gx;
 
 import spos.lab1.demo.IntOps;
 
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.net.InetSocketAddress;
@@ -49,6 +50,23 @@ public class ClientGx {
         buffer.flip();
         socketChannel.write(buffer);
         buffer.clear();
+    }
+    public class KeyEvent implements KeyListener {
+
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(java.awt.event.KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyReleased(java.awt.event.KeyEvent e) {
+
+        }
     }
     public static void main(String[] args) throws InterruptedException, IOException {
         int number =  Integer.parseInt(args[0]);
