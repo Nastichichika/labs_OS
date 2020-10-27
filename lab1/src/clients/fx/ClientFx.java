@@ -41,23 +41,19 @@ public class ClientFx{
     }
 
     public void run() throws InterruptedException, IOException {
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
 
-        int readLenth = socketChannel.read(buffer);
 
-        buffer.flip();
-        byte[] bytes = new byte[readLenth];
-        buffer.get(bytes);
-        String result = new String(bytes, "UTF-8");
-        buffer.clear();
-        this.res = result;
+
         int temp = Fx(this.number);
         int temp1 = IntOps.funcF(this.number);
         this.number = temp;
-        write();
+        this.write();
     }
 
+
+
     void write() throws IOException {
+        //tring str = "F" + String.valueOf(this.number);
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         String str = String.valueOf(this.number) +  " f(x)";
         buffer.put(str.getBytes());
@@ -96,7 +92,7 @@ public class ClientFx{
         jf.setTitle("Do you want to stop?");
         jf.setSize(400, 400);
 
-        JButton cont = new JButton("Continue"+ this.res);
+        JButton cont = new JButton("Continue"+ this.number);
         JButton st = new JButton("Stop");
         JPanel panel = new JPanel();
 
@@ -119,9 +115,8 @@ public class ClientFx{
                 System.exit(-1);
             }
         });
-
-        Thread.sleep(15000);
         if(a[0]) return;
+        Thread.sleep(15000);
         System.exit(-1);
 
     }

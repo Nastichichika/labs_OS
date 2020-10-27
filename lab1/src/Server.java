@@ -20,7 +20,8 @@ public class Server {
 
         runClients();
         ArrayList<String> result = new ArrayList<String>();
-        while(working){
+        int i = 0;
+        while(i < 2){
             SocketChannel socketChannel = serverSocketChannel.accept();
             if(socketChannel != null) {
 
@@ -28,6 +29,8 @@ public class Server {
 
                 socketChannel.close();
             }
+
+            i++;
         }
     }
     void openSocketServer() throws IOException {
@@ -37,8 +40,8 @@ public class Server {
     }
 
     void runClients() throws IOException, InterruptedException {
-        startProcess("gx");
-        startProcess("fx");
+        //startProcess("fx");
+        //startProcess("fx");
     }
     private void startProcess(String s) throws InterruptedException, IOException {
         ProcessBuilder builder = new ProcessBuilder("java", "-jar", "F:\\knu\\oop\\untitled\\labs_OS\\lab1\\out\\artifacts\\"+ s + "\\lab1.jar", String.valueOf(this.number));
@@ -46,7 +49,8 @@ public class Server {
         clientProcesses.add(process);
     }
     String read(SocketChannel socketChannel) throws IOException {
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+        /*ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+        byteBuffer.flip();
         int numRead = socketChannel.read(byteBuffer);
         if (numRead == -1) {
             socketChannel.close();
@@ -61,17 +65,26 @@ public class Server {
         //System.out.println(result);
         // byteBuffer = ByteBuffer.allocate(1024);
 
+
+        */
+        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+        byteBuffer.flip();
+
+        int numRead = socketChannel.read(byteBuffer);
+        if (numRead == -1) {
+            socketChannel.close();
+            return "";
+        }
+        //creating byte array for message
+        byte[] data = new byte[numRead];
+        System.arraycopy(byteBuffer.array(), 0, data, 0, numRead);
+        String gotData = new String(data);
+        System.out.println("Got:" + gotData);
         return "r";
     }
-    /*private void sendMessage(SocketChannel socket){
-        try{
-            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
-            String s = String.valueOf(this.number);
-            byteBuffer.put(s.getBytes());
-            byteBuffer.flip();
-            socket.write(byteBuffer);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }*/
+    private void sendMessage(SocketChannel socket){
+        ByteBuffer byteBuffer = ByteBuffer.allocate(1024*1024);
+        byteBuffer.put(Integer.toString(number).getBytes());
+        byteBuffer.flip();
+    }
 }
