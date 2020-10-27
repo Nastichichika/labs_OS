@@ -1,4 +1,6 @@
 package clients.fx;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
@@ -6,15 +8,18 @@ import java.nio.ByteBuffer;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 import spos.lab1.demo.IntOps;
+
+import javax.swing.*;
+
 public class ClientFx{
 
     SocketChannel socketChannel;
     int number;
-
+    String res;
 
     public ClientFx(int number) throws IOException {
         this.socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 2809));
-        this.number = this.number;
+        this.number = number;
     }
 
     private int Fx(int number) throws InterruptedException {
@@ -36,6 +41,16 @@ public class ClientFx{
     }
 
     public void run() throws InterruptedException, IOException {
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+
+        int readLenth = socketChannel.read(buffer);
+
+        buffer.flip();
+        byte[] bytes = new byte[readLenth];
+        buffer.get(bytes);
+        String result = new String(bytes, "UTF-8");
+        buffer.clear();
+        this.res = result;
         int temp = Fx(this.number);
         int temp1 = IntOps.funcF(this.number);
         this.number = temp;
@@ -44,7 +59,7 @@ public class ClientFx{
 
     void write() throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-        String str = "F" + String.valueOf(number);
+        String str = String.valueOf(this.number) +  " f(x)";
         buffer.put(str.getBytes());
         buffer.flip();
         socketChannel.write(buffer);
@@ -55,7 +70,14 @@ public class ClientFx{
 
         @Override
         public void keyTyped(java.awt.event.KeyEvent e) {
-
+            if((e.isControlDown() && e.getID() == 'c') || e.getKeyCode() == java.awt.event.KeyEvent.VK_ESCAPE
+                    || e.getKeyCode() == 'q') {
+                try {
+                    stop();
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+            }
         }
 
         @Override
@@ -68,8 +90,47 @@ public class ClientFx{
 
         }
     }
+    void stop() throws InterruptedException {
+        JFrame jf = new JFrame();
+
+        jf.setTitle("Do you want to stop?");
+        jf.setSize(400, 400);
+
+        JButton cont = new JButton("Continue"+ this.res);
+        JButton st = new JButton("Stop");
+        JPanel panel = new JPanel();
+
+        panel.add(cont);
+        panel.add(st);
+
+        jf.getContentPane().add(panel);
+
+        jf.setVisible(true);
+        jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
+        final boolean[] a = {false};
+        cont.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                a[0] = true;
+                return;
+            }
+        });
+        st.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(-1);
+            }
+        });
+
+        Thread.sleep(15000);
+        if(a[0]) return;
+        System.exit(-1);
+
+    }
     public static void main(String[] args) throws InterruptedException, IOException {
         int number =  Integer.parseInt(args[0]);
         ClientFx clientFx = new ClientFx(number);
+
+        clientFx.stop();
+        clientFx.run();
+        clientFx.stop();
     }
 }

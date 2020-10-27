@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
-    public void menu() throws IOException {
+    public void menu() throws IOException, InterruptedException {
         while (true){
             int choice;
             Scanner scanner = new Scanner(System.in);

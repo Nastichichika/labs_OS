@@ -2,6 +2,10 @@ package clients.gx;
 
 import spos.lab1.demo.IntOps;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -45,7 +49,7 @@ public class ClientGx {
 
     void write() throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-        String str = String.valueOf(number) + " gx";
+        String str = "G";
         buffer.put(str.getBytes());
         buffer.flip();
         socketChannel.write(buffer);
@@ -55,7 +59,14 @@ public class ClientGx {
 
         @Override
         public void keyTyped(java.awt.event.KeyEvent e) {
-
+            if((e.isControlDown() && e.getID() == 'c') || e.getKeyCode() == java.awt.event.KeyEvent.VK_ESCAPE
+                || e.getKeyCode() == 'q') {
+                try {
+                    stop();
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+            }
         }
 
         @Override
@@ -68,8 +79,44 @@ public class ClientGx {
 
         }
     }
+    void stop() throws InterruptedException {
+        JFrame jf = new JFrame();
+
+        jf.setTitle("Do you want to stop?");
+        jf.setSize(400, 400);
+
+        JButton cont = new JButton("Continue");
+        JButton st = new JButton("Stop");
+        JPanel panel = new JPanel();
+
+        panel.add(cont);
+        panel.add(st);
+
+        jf.getContentPane().add(panel);
+
+        jf.setVisible(true);
+        jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
+        final boolean[] a = {false};
+        cont.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                a[0] = true;
+                return;
+            }
+        });
+        st.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(-1);
+            }
+        });
+
+        Thread.sleep(15000);
+        if(a[0]) return;
+        System.exit(-1);
+
+    }
     public static void main(String[] args) throws InterruptedException, IOException {
         int number =  Integer.parseInt(args[0]);
-        ClientGx clientFx = new ClientGx(number);
+        ClientGx clientGx = new ClientGx(number);
+        clientGx.run();
     }
 }
