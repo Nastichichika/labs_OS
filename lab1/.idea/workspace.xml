@@ -4,6 +4,7 @@
     <artifacts-to-build>
       <artifact name="fx" />
       <artifact name="gx" />
+      <artifact name="main" />
     </artifacts-to-build>
   </component>
   <component name="BranchesTreeState">
@@ -53,15 +54,16 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager" selected="Application.fx">
+  <component name="RunManager" selected="Application.main">
     <configuration name="fx" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="clients.fx.ClientFx" />
       <module name="lab1" />
-      <option name="PROGRAM_PARAMETERS" value="2" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -98,8 +100,8 @@
     </configuration>
     <list>
       <item itemvalue="Application.fx" />
-      <item itemvalue="Application.main" />
       <item itemvalue="Application.gx" />
+      <item itemvalue="Application.main" />
       <item itemvalue="Compound.Unnamed" />
     </list>
   </component>
@@ -129,7 +131,9 @@
       <workItem from="1603702665593" duration="1914000" />
       <workItem from="1603724959823" duration="1509000" />
       <workItem from="1603787216195" duration="9861000" />
-      <workItem from="1603826049608" duration="1397000" />
+      <workItem from="1603826049608" duration="8030000" />
+      <workItem from="1603991782923" duration="8861000" />
+      <workItem from="1604002122880" duration="6134000" />
     </task>
     <servers />
   </component>
@@ -153,62 +157,62 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="475" y="227" key="#Scopes/0.0.1366.738@0.0.1366.738" timestamp="1601592723292" />
-    <state x="137" y="0" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603827459219">
+    <state x="137" y="0" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603999772081">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="137" y="0" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1603827459219" />
-    <state x="488" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1603313974986">
+    <state x="137" y="0" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1603999772081" />
+    <state x="488" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1603997717857">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="488" y="75" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1603313974986" />
-    <state x="412" y="158" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1603793682013">
+    <state x="488" y="75" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1603997717857" />
+    <state x="412" y="158" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1604002375347">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="412" y="158" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1603793682013" />
-    <state x="462" y="110" key="FileChooserDialogImpl" timestamp="1603793688406">
+    <state x="412" y="158" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1604002375347" />
+    <state x="462" y="110" key="FileChooserDialogImpl" timestamp="1604004601134">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="462" y="110" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1603793688406" />
-    <state width="1323" height="176" key="GridCell.Tab.0.bottom" timestamp="1603827418550">
+    <state x="462" y="110" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1604004601134" />
+    <state width="1323" height="219" key="GridCell.Tab.0.bottom" timestamp="1604001534901">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="176" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603827418550" />
-    <state width="1323" height="176" key="GridCell.Tab.0.center" timestamp="1603827418549">
+    <state width="1323" height="219" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604001534901" />
+    <state width="1323" height="219" key="GridCell.Tab.0.center" timestamp="1604001534901">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="176" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1603827418549" />
-    <state width="1323" height="176" key="GridCell.Tab.0.left" timestamp="1603827418549">
+    <state width="1323" height="219" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604001534901" />
+    <state width="1323" height="219" key="GridCell.Tab.0.left" timestamp="1604001534901">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="176" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1603827418549" />
-    <state width="1323" height="176" key="GridCell.Tab.0.right" timestamp="1603827418549">
+    <state width="1323" height="219" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604001534901" />
+    <state width="1323" height="219" key="GridCell.Tab.0.right" timestamp="1604001534901">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="176" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1603827418549" />
-    <state width="1323" height="176" key="GridCell.Tab.1.bottom" timestamp="1603827418550">
+    <state width="1323" height="219" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604001534901" />
+    <state width="1323" height="219" key="GridCell.Tab.1.bottom" timestamp="1604001534902">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="176" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603827418550" />
-    <state width="1323" height="176" key="GridCell.Tab.1.center" timestamp="1603827418550">
+    <state width="1323" height="219" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604001534902" />
+    <state width="1323" height="219" key="GridCell.Tab.1.center" timestamp="1604001534901">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="176" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1603827418550" />
-    <state width="1323" height="176" key="GridCell.Tab.1.left" timestamp="1603827418550">
+    <state width="1323" height="219" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1604001534901" />
+    <state width="1323" height="219" key="GridCell.Tab.1.left" timestamp="1604001534901">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="176" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1603827418550" />
-    <state width="1323" height="176" key="GridCell.Tab.1.right" timestamp="1603827418550">
+    <state width="1323" height="219" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1604001534901" />
+    <state width="1323" height="219" key="GridCell.Tab.1.right" timestamp="1604001534901">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="176" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1603827418550" />
+    <state width="1323" height="219" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1604001534901" />
     <state x="263" y="111" key="IDE.errors.dialog" timestamp="1601592369155">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="263" y="111" key="IDE.errors.dialog/0.0.1366.738@0.0.1366.738" timestamp="1601592369155" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1603793693767">
+    <state x="163" y="0" key="SettingsEditor" timestamp="1604004669908">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1603793693767" />
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1604004669908" />
     <state x="92" y="92" width="1182" height="554" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601592756323">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -217,14 +221,14 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="235" y="104" width="895" height="630" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.738@0.0.1366.738" timestamp="1603703362815" />
-    <state x="413" y="129" key="extract.method.dialog" timestamp="1603801833796">
+    <state x="413" y="129" key="extract.method.dialog" timestamp="1603998550569">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="413" y="129" key="extract.method.dialog/0.0.1366.738@0.0.1366.738" timestamp="1603801833796" />
-    <state x="65" y="0" key="new project wizard" timestamp="1601673806052">
+    <state x="413" y="129" key="extract.method.dialog/0.0.1366.738@0.0.1366.738" timestamp="1603998550569" />
+    <state x="65" y="0" key="new project wizard" timestamp="1603991965624">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="65" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1601673806052" />
+    <state x="65" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1603991965624" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -11,6 +11,7 @@ public class Server {
     boolean working = true;
     ArrayList<Process> clientProcesses = new ArrayList<Process>();
 
+    ArrayList<String> result = new ArrayList<String>();
     public Server(int number){
         this.number = number;
     }
@@ -19,19 +20,25 @@ public class Server {
         openSocketServer();
 
         runClients();
-        ArrayList<String> result = new ArrayList<String>();
-        int i = 0;
-        while(i < 2){
+
+        while(result.size() < 4){
             SocketChannel socketChannel = serverSocketChannel.accept();
             if(socketChannel != null) {
-
-                result.add(read(socketChannel));
-
-                socketChannel.close();
+                try {
+                    read(socketChannel);
+                    if(result.get(1).equals("0")) {
+                        if(result.get(0).equals("F"))
+                            result.add("G");
+                        else
+                            result.add("F");
+                    }
+                    result.add("")
+                } catch (IOException e) {
+                    this.close();
+                }
             }
-
-            i++;
         }
+        multiplication();
     }
     void openSocketServer() throws IOException {
         serverSocketChannel = ServerSocketChannel.open();
@@ -40,51 +47,47 @@ public class Server {
     }
 
     void runClients() throws IOException, InterruptedException {
-        //startProcess("fx");
-        //startProcess("fx");
+        if(this.number % 2 == 0) {
+            startProcess("gx");
+            startProcess("fx");
+        }
+        else {
+            startProcess("fx");
+            startProcess("gx");
+        }
     }
     private void startProcess(String s) throws InterruptedException, IOException {
         ProcessBuilder builder = new ProcessBuilder("java", "-jar", "F:\\knu\\oop\\untitled\\labs_OS\\lab1\\out\\artifacts\\"+ s + "\\lab1.jar", String.valueOf(this.number));
         Process process = builder.start();
         clientProcesses.add(process);
     }
-    String read(SocketChannel socketChannel) throws IOException {
-        /*ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-        byteBuffer.flip();
-        int numRead = socketChannel.read(byteBuffer);
-        if (numRead == -1) {
-            socketChannel.close();
-            return "";
+    private void read(SocketChannel socket) throws IOException {
+        ByteBuffer readBuffer = ByteBuffer.allocate(48);
+        int bufferSize = socket.read(readBuffer);
+        if (bufferSize == -1) {
+            socket.close();
+        } else {
+            readBuffer.flip();
         }
-        //creating byte array for message
-        byte[] data = new byte[numRead];
-        System.arraycopy(byteBuffer.array(), 0, data, 0, numRead);
-        String gotData = new String(data);
-        System.out.println("Got:" + gotData);
-        //String result = new String(buffer.array()).trim();
-        //System.out.println(result);
-        // byteBuffer = ByteBuffer.allocate(1024);
 
-
-        */
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-        byteBuffer.flip();
-
-        int numRead = socketChannel.read(byteBuffer);
-        if (numRead == -1) {
-            socketChannel.close();
-            return "";
-        }
-        //creating byte array for message
-        byte[] data = new byte[numRead];
-        System.arraycopy(byteBuffer.array(), 0, data, 0, numRead);
-        String gotData = new String(data);
-        System.out.println("Got:" + gotData);
-        return "r";
+        String returnString = new String(deconstructMessage(readBuffer.array()), "UTF-8").trim();
+        result.add(returnString.substring(0,1));
+        result.add(returnString.substring(1));
     }
-    private void sendMessage(SocketChannel socket){
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024*1024);
-        byteBuffer.put(Integer.toString(number).getBytes());
-        byteBuffer.flip();
+    public byte[] deconstructMessage(byte[] data) {
+
+        return Arrays.copyOfRange(data, 0, data.length );
+    }
+    public void close() throws IOException {
+        for (Process proc : clientProcesses) {
+            proc.destroy();
+        }
+        serverSocketChannel.close();
+    }
+    void multiplication(){
+        for(int i = 0; i < 3; i+=2)
+            System.out.println(result.get(i) + "(x) = " + result.get(i+1));
+        int res = Integer.parseInt(result.get(1)) * Integer.parseInt(result.get(3));
+        System.out.println((res));
     }
 }
