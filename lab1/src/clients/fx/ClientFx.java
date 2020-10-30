@@ -1,8 +1,5 @@
 package clients.fx;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.net.InetSocketAddress;
@@ -15,10 +12,10 @@ import spos.lab1.demo.IntOps;
 
 public class ClientFx{
 
-    SocketChannel socketChannel;
-    int number;
+    private SocketChannel socketChannel;
+    private int number;
 
-    public ClientFx(int number) throws IOException {
+    ClientFx(int number) throws IOException {
         this.socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 2809));
         this.socketChannel.configureBlocking(false);
         this.number = number;
@@ -30,13 +27,17 @@ public class ClientFx{
                 return 28;
             }
             case 2: {
-                Thread.sleep(5000);
+                Thread.sleep(3000);
                 return 42;
             }
             case 3: {
                 return 0;
             }
-            case 4:
+            case 4: {
+                while(true) {
+                    int i = 1;
+                }
+            }
             case 5: {
                 return 9;
             }
@@ -50,14 +51,14 @@ public class ClientFx{
         }
     }
 
-    public void run() throws InterruptedException, IOException {
+    void run() throws InterruptedException, IOException {
         int temp = Fx(this.number);
         //int temp1 = IntOps.funcF(this.number);
         this.number = temp;
         this.write();
     }
 
-    void write() throws IOException {
+    private void write() throws IOException {
 
         String str = "F" + String.valueOf(this.number);
 

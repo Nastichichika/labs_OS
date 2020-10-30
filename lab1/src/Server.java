@@ -7,9 +7,10 @@ import java.util.*;
 
 public class Server {
     private ServerSocketChannel serverSocketChannel;
-    int number;
-    boolean working = true;
-    ArrayList<Process> clientProcesses = new ArrayList<Process>();
+    private int number;
+    private String multiplication;
+    int working = 2;
+    private ArrayList<Process> clientProcesses = new ArrayList<Process>();
 
     ArrayList<String> result = new ArrayList<String>();
     public Server(int number){
@@ -21,32 +22,32 @@ public class Server {
 
         runClients();
 
-        while(result.size() < 4){
+        while(working > 0){
             SocketChannel socketChannel = serverSocketChannel.accept();
             if(socketChannel != null) {
                 try {
                     read(socketChannel);
                     if(result.get(1).equals("0")) {
-                        if(result.get(0).equals("F"))
-                            result.add("G");
-                        else
-                            result.add("F");
+                        --working;
+                        cust_show();
                     }
-                    result.add("")
+
                 } catch (IOException e) {
                     this.close();
                 }
+                socketChannel.close();
             }
+
         }
         multiplication();
     }
-    void openSocketServer() throws IOException {
+    private void openSocketServer() throws IOException {
         serverSocketChannel = ServerSocketChannel.open();
         serverSocketChannel.socket().bind(new InetSocketAddress("localhost", 2809));
         serverSocketChannel.configureBlocking(false);
     }
 
-    void runClients() throws IOException, InterruptedException {
+    private void runClients() throws IOException, InterruptedException {
         if(this.number % 2 == 0) {
             startProcess("gx");
             startProcess("fx");
@@ -71,11 +72,13 @@ public class Server {
         }
 
         String returnString = new String(deconstructMessage(readBuffer.array()), "UTF-8").trim();
+        System.out.println(returnString.substring(0,1) + "(x) = " + returnString.substring(1));
         result.add(returnString.substring(0,1));
         result.add(returnString.substring(1));
-    }
-    public byte[] deconstructMessage(byte[] data) {
+        --working;
 
+    }
+    private byte[] deconstructMessage(byte[] data) {
         return Arrays.copyOfRange(data, 0, data.length );
     }
     public void close() throws IOException {
@@ -84,10 +87,40 @@ public class Server {
         }
         serverSocketChannel.close();
     }
-    void multiplication(){
-        for(int i = 0; i < 3; i+=2)
-            System.out.println(result.get(i) + "(x) = " + result.get(i+1));
+    private void multiplication() throws IOException {
+        if(result.size() <= 2) {
+            this.multiplication = "undefined";
+            return;
+        }
+        if(result.get(1).equals("0")) {
+            this.multiplication = "0";
+            return;
+        }
         int res = Integer.parseInt(result.get(1)) * Integer.parseInt(result.get(3));
-        System.out.println((res));
+        this.multiplication = String.valueOf(res);
+    }
+    private void cust_show() {
+        if(result.get(0).equals("F"))
+            result.add("G");
+        else  
+            result.add("F");
+        result.add("is not computed");
+
+        System.out.println(result.get(2) + "(x) " + result.get(3));
+    }
+    public void showResult() throws IOException {
+        multiplication();
+        if(result.size() == 0) {
+            System.out.println("F(x) = is not computed");
+            System.out.println("G(x) = is not computed");
+        }
+        else {
+            System.out.println(result.get(0) + "(x) = " + result.get(1));
+            cust_show();
+        }
+        showMultiplication();
+    }
+    public void showMultiplication() {
+        System.out.println("Result multiplication is " + this.multiplication);
     }
 }
