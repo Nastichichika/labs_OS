@@ -48,7 +48,7 @@ public class Server {
     }
 
     private void runClients() throws IOException, InterruptedException {
-        if(this.number % 2 == 0) {
+        if(this.number % 2 != 0) {
             startProcess("gx");
             startProcess("fx");
         }

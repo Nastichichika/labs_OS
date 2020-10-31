@@ -19,27 +19,27 @@ public class ClientGx {
 
     private int Gx(int number) throws InterruptedException {
         switch (number) {
-            case 1: {
+            case 0: {
                 Thread.sleep(3000);
                 return 42;
             }
-            case 2: {
+            case 1: {
                 return 28;
             }
-            case 3: {
+            case 2: {
                 while(true) {
                     int i = 1;
                 }
             }
-            case 4: {
+            case 3: {
                 return 0;
             }
-            case 5: {
+            case 4: {
                 while(true) {
                     int i = 1;
                 }
             }
-            case 6: {
+            case 5: {
                 return 9;
             }
             default:
@@ -49,7 +49,7 @@ public class ClientGx {
 
     void run() throws IOException, InterruptedException {
         int temp = Gx(this.number);
-        //int temp1 = IntOps.funcG(this.number);
+        //int temp = IntOps.funcG(this.number);
         this.number = temp;
         this.write();
     }

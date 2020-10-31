@@ -23,25 +23,25 @@ public class ClientFx{
 
     private int Fx(int number) throws InterruptedException {
         switch (number) {
-            case 1: {
+            case 0: {
                 return 28;
             }
-            case 2: {
+            case 1: {
                 Thread.sleep(3000);
                 return 42;
             }
-            case 3: {
+            case 2: {
                 return 0;
             }
-            case 4: {
+            case 3: {
                 while(true) {
                     int i = 1;
                 }
             }
-            case 5: {
+            case 4: {
                 return 9;
             }
-            case 6: {
+            case 5: {
                 while(true) {
                     int i = 1;
                 }
@@ -53,7 +53,7 @@ public class ClientFx{
 
     void run() throws InterruptedException, IOException {
         int temp = Fx(this.number);
-        //int temp1 = IntOps.funcF(this.number);
+        //int temp = IntOps.funcF(this.number);
         this.number = temp;
         this.write();
     }

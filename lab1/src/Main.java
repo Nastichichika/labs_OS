@@ -12,14 +12,14 @@ public class Main {
                 System.exit(0);
             });
             System.out.println("Testing: ");
-            System.out.println("1. f finishes before g with non-zero value");
-            System.out.println("2. g finishes before f with non-zero value");
-            System.out.println("3. f finishes zero, g hangs");
-            System.out.println("4. g finishes zero, f hangs");
-            System.out.println("5. f finishes non-zero value, f hangs");
-            System.out.println("6. g finishes non-zero value, f hangs");
+            System.out.println("0. f finishes before g with non-zero value");
+            System.out.println("1. g finishes before f with non-zero value");
+            System.out.println("2. f finishes zero, g hangs");
+            System.out.println("3. g finishes zero, f hangs");
+            System.out.println("4. f finishes non-zero value, g hangs. Check cancellation.");
+            System.out.println("5. g finishes non-zero value, f hangs. Check cancellation.");
             int choice = scanner.nextInt();
-            if (choice > 6 || choice < 1){
+            if (choice > 5 || choice < 0){
                 System.exit(0);
             }
             Server server =  new Server(choice);
