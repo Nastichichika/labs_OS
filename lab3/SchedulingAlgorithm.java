@@ -15,7 +15,6 @@ public class SchedulingAlgorithm {
         return (a.cputime + a.ioblocking) - (b.cputime + b.ioblocking);
       }
     });
-    int i = 0;
     int comptime = 0;
     int currentProcess = 0;
     int previousProcess = 0;
@@ -23,7 +22,7 @@ public class SchedulingAlgorithm {
     int completed = 0;
     String resultsFile = "Summary-Processes";
 
-    result.schedulingType = "Batch (Nonpreemptive)";
+    result.schedulingType = "Batch (Non-preemptive)";
     result.schedulingName = "Shortest job first";
     try {
       PrintStream out = new PrintStream(new FileOutputStream(resultsFile));
@@ -38,12 +37,19 @@ public class SchedulingAlgorithm {
             out.close();
             return result;
           }
-          for (i = size - 1; i >= 0; i--) {
-            process = (sProcess) processVector.elementAt(i);
-            if (process.cpudone < process.cputime) {
-              currentProcess = i;
+          currentProcess++;
+
+          for (int i = 0; i < size; i--) {
+            sProcess temp = (sProcess) processVector.elementAt(i);
+            if (temp.cpudone < temp.cputime) {
+              processVector.remove(i);
             }
           }
+          if(processVector.isEmpty())
+            break;
+          if(currentProcess >= processVector.size())
+            currentProcess = 0;
+
           process = (sProcess) processVector.elementAt(currentProcess);
           out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
         }      
@@ -54,12 +60,7 @@ public class SchedulingAlgorithm {
           previousProcess = currentProcess;
 
 
-          for (i = size - 1; i >= 0; i--) {
-            process = (sProcess) processVector.elementAt(i);
-            if (process.cpudone < process.cputime && previousProcess != i) { 
-              currentProcess = i;
-            }
-          }
+
           process = (sProcess) processVector.elementAt(currentProcess);
           out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
         }        
