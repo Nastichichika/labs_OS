@@ -12,7 +12,7 @@ public class ClientGx {
     private int number;
 
     public ClientGx(int number) throws IOException {
-        this.socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 2809));
+        this.socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 2819));
         this.socketChannel.configureBlocking(false);
         this.number = number;
     }
@@ -24,6 +24,7 @@ public class ClientGx {
                 return 42;
             }
             case 1: {
+                Thread.sleep(3000);
                 return 28;
             }
             case 2: {

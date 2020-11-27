@@ -16,7 +16,7 @@ public class ClientFx{
     private int number;
 
     ClientFx(int number) throws IOException {
-        this.socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 2809));
+        this.socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 2819));
         this.socketChannel.configureBlocking(false);
         this.number = number;
     }

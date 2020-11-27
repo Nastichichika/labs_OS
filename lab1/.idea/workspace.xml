@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="fx" />
       <artifact name="gx" />
-      <artifact name="main" />
     </artifacts-to-build>
   </component>
   <component name="BranchesTreeState">
@@ -82,17 +80,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Unnamed" type="CompoundRunConfigurationType">
       <method v="2" />
     </configuration>
@@ -144,6 +131,10 @@
       <workItem from="1604098507489" duration="114000" />
       <workItem from="1604098673359" duration="333000" />
       <workItem from="1604099383586" duration="9536000" />
+      <workItem from="1604238542145" duration="553000" />
+      <workItem from="1604416489307" duration="593000" />
+      <workItem from="1604477791024" duration="4879000" />
+      <workItem from="1604495458546" duration="140000" />
     </task>
     <servers />
   </component>
@@ -179,26 +170,26 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="412" y="158" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1604002375347" />
-    <state x="462" y="110" key="FileChooserDialogImpl" timestamp="1604004601134">
+    <state x="462" y="110" key="FileChooserDialogImpl" timestamp="1604495616243">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="462" y="110" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1604004601134" />
-    <state width="1323" height="208" key="GridCell.Tab.0.bottom" timestamp="1604084590397">
+    <state x="462" y="110" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1604495616243" />
+    <state width="1323" height="208" key="GridCell.Tab.0.bottom" timestamp="1604239100213">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="208" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604084590397" />
-    <state width="1323" height="208" key="GridCell.Tab.0.center" timestamp="1604084590396">
+    <state width="1323" height="208" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604239100213" />
+    <state width="1323" height="208" key="GridCell.Tab.0.center" timestamp="1604239100213">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="208" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604084590396" />
-    <state width="1323" height="208" key="GridCell.Tab.0.left" timestamp="1604084590396">
+    <state width="1323" height="208" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604239100213" />
+    <state width="1323" height="208" key="GridCell.Tab.0.left" timestamp="1604239100213">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="208" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604084590396" />
-    <state width="1323" height="208" key="GridCell.Tab.0.right" timestamp="1604084590397">
+    <state width="1323" height="208" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604239100213" />
+    <state width="1323" height="208" key="GridCell.Tab.0.right" timestamp="1604239100213">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="208" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604084590397" />
+    <state width="1323" height="208" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604239100213" />
     <state width="1323" height="219" key="GridCell.Tab.1.bottom" timestamp="1604080783533">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -235,10 +226,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="129" key="extract.method.dialog/0.0.1366.738@0.0.1366.738" timestamp="1603998550569" />
-    <state x="65" y="0" key="new project wizard" timestamp="1603991965624">
+    <state x="65" y="0" key="new project wizard" timestamp="1604495617491">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="65" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1603991965624" />
+    <state x="65" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1604495617491" />
     <state x="339" y="165" key="run.anything.popup" timestamp="1604092962730">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

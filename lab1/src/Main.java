@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        while (true){
+
             Signal.handle(new Signal("INT"), (o1)-> {
                 System.out.println("\nUser cancellation. x was not written");
                 System.exit(0);
@@ -37,6 +37,6 @@ public class Main {
             server.start();
             server.showMultiplication();
             server.close();
-        }
+
     }
 }

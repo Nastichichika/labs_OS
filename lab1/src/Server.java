@@ -31,7 +31,6 @@ public class Server {
                         --working;
                         cust_show();
                     }
-
                 } catch (IOException e) {
                     this.close();
                 }
@@ -43,7 +42,7 @@ public class Server {
     }
     private void openSocketServer() throws IOException {
         serverSocketChannel = ServerSocketChannel.open();
-        serverSocketChannel.socket().bind(new InetSocketAddress("localhost", 2809));
+        serverSocketChannel.socket().bind(new InetSocketAddress("localhost", 2819));
         serverSocketChannel.configureBlocking(false);
     }
 
