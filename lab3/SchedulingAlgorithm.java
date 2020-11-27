@@ -39,7 +39,7 @@ public class SchedulingAlgorithm {
           }
           currentProcess++;
 
-          for (int i = 0; i < size; i--) {
+          for(int i = 0; i < size; i++) {
             sProcess temp = (sProcess) processVector.elementAt(i);
             if (temp.cpudone < temp.cputime) {
               processVector.remove(i);
@@ -51,6 +51,11 @@ public class SchedulingAlgorithm {
             currentProcess = 0;
 
           process = (sProcess) processVector.elementAt(currentProcess);
+
+          if(currentProcess == previousProcess && process.cpudone >= process.cputime) {
+            out.println("Process: " + currentProcess + " completed... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
+            break;
+          }
           out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
         }      
         if (process.ioblocking == process.ionext) {
@@ -58,7 +63,6 @@ public class SchedulingAlgorithm {
           process.numblocked++;
           process.ionext = 0;
           previousProcess = currentProcess;
-
 
 
           process = (sProcess) processVector.elementAt(currentProcess);
@@ -75,4 +79,5 @@ public class SchedulingAlgorithm {
     result.compuTime = comptime;
     return result;
   }
+  void
 }
