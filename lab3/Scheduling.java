@@ -16,7 +16,7 @@ public class Scheduling {
   private static int meanDev = 1000;
   private static int standardDev = 100;
   private static int runtime = 1000;
-  private static Vector processVector = new Vector();
+  private static Vector<sProcess> processVector = new Vector<sProcess>();
   private static Results result = new Results("null","null",0);
   private static String resultsFile = "Summary-Results";
 
@@ -57,7 +57,7 @@ public class Scheduling {
           }
           X = X * standardDev;
           cputime = (int) X + meanDev;
-          processVector.addElement(new sProcess(cputime, ioblocking, 0, 0, 0));          
+          processVector.add(new sProcess(cputime, ioblocking, 0, 0, 0));
         }
         if (line.startsWith("runtime")) {
           StringTokenizer st = new StringTokenizer(line);
@@ -77,7 +77,7 @@ public class Scheduling {
     System.out.println("standdev " + standardDev);
     int size = processVector.size();
     for (i = 0; i < size; i++) {
-      sProcess process = (sProcess) processVector.elementAt(i);
+      sProcess process = (sProcess) processVector.get(i);
       System.out.println("process " + i + " " + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.numblocked);
     }
     System.out.println("runtime " + runtime);
@@ -110,13 +110,13 @@ public class Scheduling {
           }
           X = X * standardDev;
         int cputime = (int) X + meanDev;
-        processVector.addElement(new sProcess(cputime,i*100,0,0,0));          
+        processVector.add(new sProcess(cputime,i*100,0,0,0));
         i++;
       }
     }
     result = SchedulingAlgorithm.Run(runtime, processVector, result);    
     try {
-      //BufferedWriter out = new BufferedWriter(new FileWriter(resultsFile));
+
       PrintStream out = new PrintStream(new FileOutputStream(resultsFile));
       out.println("Scheduling Type: " + result.schedulingType);
       out.println("Scheduling Name: " + result.schedulingName);
@@ -125,7 +125,7 @@ public class Scheduling {
       out.println("Standard Deviation: " + standardDev);
       out.println("Process #\tCPU Time\tIO Blocking\tCPU Completed\tCPU Blocked");
       for (i = 0; i < processVector.size(); i++) {
-        sProcess process = (sProcess) processVector.elementAt(i);
+        sProcess process = (sProcess) processVector.get(i);
         out.print(Integer.toString(i));
         if (i < 100) { out.print("\t\t"); } else { out.print("\t"); }
         out.print(Integer.toString(process.cputime));
