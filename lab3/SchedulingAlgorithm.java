@@ -13,7 +13,11 @@ public class SchedulingAlgorithm {
     processVector.sort(new Comparator<sProcess>() {
       @Override
       public int compare(sProcess a, sProcess b) {
-        return (a.cputime  - b.cputime );
+        if(a.priority == b.priority && a.cputime + a.ioblocking == b.cputime + b.ioblocking)
+          return 0;
+        if(a.priority == b.priority)
+          return a.cputime + a.ioblocking - b.cputime + b.ioblocking;
+        return a.priority - b.priority;
       }
     });
     int comptime = 0;
