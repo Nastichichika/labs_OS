@@ -10,15 +10,12 @@ import java.io.*;
 public class SchedulingAlgorithm {
 
   public static Results Run(int runtime, Vector<sProcess> processVector, Results result) {
-    processVector.sort(new Comparator<sProcess>() {
-      @Override
-      public int compare(sProcess a, sProcess b) {
-        if(a.priority == b.priority && a.cputime + a.ioblocking == b.cputime + b.ioblocking)
-          return 0;
-        if(a.priority == b.priority)
-          return a.cputime + a.ioblocking - b.cputime + b.ioblocking;
-        return a.priority - b.priority;
-      }
+    processVector.sort((a, b) -> {
+      if(a.priority == b.priority && a.cputime == b.cputime)
+        return 0;
+      if(a.priority == b.priority)
+        return a.cputime  - b.cputime;
+      return a.priority - b.priority;
     });
     int comptime = 0;
     int currentProcess = 0;

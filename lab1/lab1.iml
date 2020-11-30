@@ -7,6 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="library" name="lab13" level="project" />
+    <orderEntry type="library" name="lab1" level="project" />
+    <orderEntry type="library" name="lab12" level="project" />
+    <orderEntry type="library" name="main" level="project" />
+    <orderEntry type="library" name="lab11" level="project" />
   </component>
 </module>

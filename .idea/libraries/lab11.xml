@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="lab11">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lab1/out/artifacts/fx/lab1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
