@@ -1,24 +1,25 @@
 public class BakeryLock {
-    public static final int numberOfThreads = 5;
-    private static boolean[] choosing = new boolean[numberOfThreads];
+    private int numberOfThreads;
+    private static int[] tickets;
+    BakeryLock(int numberOfThreads) {
+        this.numberOfThreads = numberOfThreads;
+        tickets = new int[numberOfThreads];
+        for(int i = 0; i < numberOfThreads; i++)
+            tickets[i] = 0;
 
-    private static int[] tickets = new int[numberOfThreads];
+    }
     public void lock() {
-        int id = 0;
-        choosing[id] = true;
+        int id = (int) Thread.currentThread().getId() % numberOfThreads;
         tickets[id] = findMax() + 1;
-        choosing[id] = false;
         for (int i = 0; i < tickets.length; i++) {
             if (i == id) { continue; }
-            while (choosing[i]) { }
-
-            while ((tickets[i] != 0) && ((tickets[i] < tickets[id]) || ((tickets[i] == tickets[id]) && (i < id)))) {
-            }
+            while (tickets[i] != 0 && tickets[i] < tickets[id]) {Thread.yield(); }
         }
     }
 
-    private void unlock(int i) {
-        tickets[i] = 0;
+    public void unlock() {
+        int id = (int) Thread.currentThread().getId() % numberOfThreads;
+        tickets[id] = 0;
     }
     private int findMax() {
         int m = tickets[0];
