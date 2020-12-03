@@ -59,7 +59,7 @@ public class Scheduling {
           }
           X = X * standardDev;
           cputime = (int) X + meanDev;
-          processVector.add(new sProcess(cputime, ioblocking, 0, 0, 0, priority));
+          processVector.add(new sProcess(cputime, ioblocking, 0, 0, 0, priority, false));
         }
         if (line.startsWith("runtime")) {
           StringTokenizer st = new StringTokenizer(line);
@@ -112,7 +112,7 @@ public class Scheduling {
           }
           X = X * standardDev;
         int cputime = (int) X + meanDev;
-        processVector.add(new sProcess(cputime,i*100,0,0,0, (int) (Math.random() * processVector.size())));
+        processVector.add(new sProcess(cputime,i*100,0,0,0, (int) (Math.random() * processVector.size()), false));
         i++;
       }
     }
@@ -125,18 +125,19 @@ public class Scheduling {
       out.println("Simulation Run Time: " + result.compuTime);
       out.println("Mean: " + meanDev);
       out.println("Standard Deviation: " + standardDev);
-      out.println("Process #\tCPU Time\tIO Blocking\tCPU Completed\tCPU Blocked");
+      out.println("Process #\tCPU Time\tIO Blocking\tCPU Completed\tCPU Blocked\t\tPriority");
       for (i = 0; i < processVector.size(); i++) {
         sProcess process = (sProcess) processVector.get(i);
         out.print(Integer.toString(i));
-        if (i < 100) { out.print("\t\t"); } else { out.print("\t"); }
+        if (i < 100) { out.print("\t\t\t"); } else { out.print("\t\t"); }
         out.print(Integer.toString(process.cputime));
-        if (process.cputime < 100) { out.print(" (ms)\t\t"); } else { out.print(" (ms)\t"); }
+        if (process.cputime < 100) { out.print(" (ms)\t\t\t"); } else { out.print(" (ms)\t\t"); }
         out.print(Integer.toString(process.ioblocking));
-        if (process.ioblocking < 100) { out.print(" (ms)\t\t"); } else { out.print(" (ms)\t"); }
+        if (process.ioblocking < 100) { out.print(" (ms)\t\t\t"); } else { out.print(" (ms)\t\t"); }
         out.print(Integer.toString(process.cpudone));
-        if (process.cpudone < 100) { out.print(" (ms)\t\t"); } else { out.print(" (ms)\t"); }
-        out.println(process.numblocked + " times");
+        if (process.cpudone < 100) { out.print(" (ms)\t\t\t"); } else { out.print(" (ms)\t\t"); }
+        out.print(process.numblocked + " times\t\t\t");
+        out.println(Integer.toString(process.priority));
       }
       out.close();
     } catch (IOException e) { /* Handle exceptions */ }

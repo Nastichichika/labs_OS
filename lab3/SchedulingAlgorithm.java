@@ -15,69 +15,54 @@ public class SchedulingAlgorithm {
         return 0;
       if(a.priority == b.priority)
         return a.cputime  - b.cputime;
-      return a.priority - b.priority;
+      return b.priority - a.priority;
     });
+
+    int i = 0;
     int comptime = 0;
     int currentProcess = 0;
     int previousProcess = 0;
-    int completed = 0;
     int size = processVector.size();
+    int completed = 0;
     String resultsFile = "Summary-Processes";
 
-    result.schedulingType = "Batch (Non-preemptive)";
+    result.schedulingType = "Batch (Nonpreemptive)";
     result.schedulingName = "Shortest job first";
     try {
       PrintStream out = new PrintStream(new FileOutputStream(resultsFile));
-      sProcess process = (sProcess) processVector.get(currentProcess);
-      out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
+      sProcess process = (sProcess) processVector.elementAt(currentProcess);
+      out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.priority +  ")");
       while (comptime < runtime) {
         if (process.cpudone == process.cputime) {
           completed++;
-          out.println("Process: " + currentProcess + " completed... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
+          out.println("Process: " + currentProcess + " completed... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.priority +  ")");
           if (completed == size) {
             result.compuTime = comptime;
             out.close();
             return result;
           }
-          currentProcess++;
-          processVector = removeCompleted(processVector);
-
-          if(processVector.isEmpty())
-            break;
-          if(currentProcess >= processVector.size())
-            currentProcess = 0;
-
-          process = processVector.get(currentProcess);
-
-          if(currentProcess == previousProcess && process.cpudone >= process.cputime) {
-            out.println("Process: " + currentProcess + " completed... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone +")");
-            break;
+          for (i = size - 1; i >= 0; i--) {
+            process = processVector.elementAt(i);
+            if (process.cpudone < process.cputime) {
+              currentProcess = i;
+            }
           }
-          out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + ")");
+          process = processVector.elementAt(currentProcess);
+          out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.priority +  ")");
         }
-
         if (process.ioblocking == process.ionext) {
-          out.println("Process: " + currentProcess + " I/O blocked... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + ")");
+          out.println("Process: " + currentProcess + " I/O blocked... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.priority +  ")");
           process.numblocked++;
           process.ionext = 0;
           previousProcess = currentProcess;
-
-          currentProcess++;
-          processVector = removeCompleted(processVector);
-
-          if(processVector.isEmpty())
-            break;
-          if(currentProcess >= processVector.size())
-            currentProcess = 0;
-
-          process = (sProcess) processVector.get(currentProcess);
-
-          if(currentProcess == previousProcess && process.cpudone >= process.cputime) {
-            out.println("Process: " + currentProcess + " completed... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + ")");
-            break;
+          for (i = size - 1; i >= 0; i--) {
+            process = processVector.elementAt(i);
+            if (process.cpudone < process.cputime && previousProcess != i) {
+              currentProcess = i;
+            }
           }
-
-          out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone +  ")");
+          process = processVector.elementAt(currentProcess);
+          out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.priority +  ")");
         }
         process.cpudone++;
         if (process.ioblocking > 0) {
@@ -86,17 +71,9 @@ public class SchedulingAlgorithm {
         comptime++;
       }
       out.close();
-    } catch (IOException e) { /* Handle exceptions */ }
+    } catch (IOException e) { }
     result.compuTime = comptime;
-
     return result;
   }
-  static Vector<sProcess> removeCompleted(Vector<sProcess> processVector) {
-    Vector<sProcess> vector = new Vector<>();
-    for (sProcess process : processVector) {
-      if (process.cputime > process.cpudone)
-        vector.add(process);
-    }
-    return vector;
-  }
+
 }
