@@ -49,38 +49,29 @@ public class PageFault {
    * @param controlPanel represents the graphical element of the 
    *   simulator, and allows one to modify the current display.
    */
-  public static void replacePage ( ArrayList<Page> mem , int virtPageNum , int replacePageNum , ControlPanel controlPanel )
+  public static void replacePage (ArrayList<Page> mem , int virtPageNum , int replacePageNum , ControlPanel controlPanel )
   {
-    int count = 0;
-    int oldestPage = -1;
-    int oldestTime = 0;
-    int firstPage = -1;
-    int map_count = 0;
-    boolean mapped = false;
-
-    while ( ! (mapped) || count != virtPageNum ) {
-      Page page = mem.get(count);
-      if ( page.physical != -1 ) {
-        if (firstPage == -1) {
-          firstPage = count;
-        }
-        if (page.inMemTime > oldestTime) {
-          oldestTime = page.inMemTime;
-          oldestPage = count;
-          mapped = true;
-        }
-      }
-      count++;
-      if ( count == virtPageNum ) {
-        mapped = true;
-      }
+    ArrayList<Page> clock = new ArrayList<>();
+    for(int i = 0; i < virtPageNum; i++) {
+      if(mem.get(i).physical != -1)
+        clock.add(mem.get(i));
     }
-    if (oldestPage == -1) {
-      oldestPage = firstPage;
+    clock.sort((a, b) -> {
+      return b.inMemTime - a.inMemTime;
+    });
+    int removeId = -1;
+    for(int i = 0; i < virtPageNum; i++) {
+      Page page = mem.get(i);
+      if(page.R == 1)
+        page.R = 0;
+      else
+        removeId = page.id;
+      if(removeId == -1 && i == virtPageNum - 1)
+        i = 0;
     }
-    Page page = mem.get( oldestPage );
+    Page page = mem.get( removeId );
     Page nextpage = mem.get( replacePageNum );
-    controlPanel.removePhysicalPage( oldestPage );
+    controlPanel.removePhysicalPage( removeId );
     nextpage.physical = page.physical;
     controlPanel.addPhysicalPage( nextpage.physical , replacePageNum );
     page.inMemTime = 0;
